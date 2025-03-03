@@ -2,7 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
 const SignInForm = () => {
@@ -15,6 +15,14 @@ const SignInForm = () => {
 
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const authError = searchParams.get("error");
+  const authErrorNames: { [key: string]: string } = {
+    AccessDenied: "Account access denied!",
+    callback: "Callback url is invalid!",
+    OAuthSignin: "OAuth sign in error!",
+  };
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -26,11 +34,11 @@ const SignInForm = () => {
       redirect: false,
     });
 
-    if (signInData?.error) {
+    if (signInData?.error && !authError) {
       setError("Invalid email or password!");
       setIsLoading(false);
     } else {
-      router.push("/videos");
+      router.push("/");
       router.refresh();
     }
   };
@@ -121,7 +129,12 @@ const SignInForm = () => {
           </a>
         </div>
 
-        {error && <p className="text-red-500 text-center my-2">{error}</p>}
+        {error && <p className="text-red-500 text-center mt-4">{error}</p>}
+        {!error && authError && (
+          <p className="text-red-500 text-center mt-4">
+            {authErrorNames[authError]}
+          </p>
+        )}
 
         <button
           type="submit"

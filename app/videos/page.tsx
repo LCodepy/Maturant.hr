@@ -8,6 +8,8 @@ import { useSession } from "next-auth/react";
 const Videos = async () => {
   const session = await getServerSession(authOptions);
 
+  console.log(session);
+
   const url1 =
     "https://iframe.mediadelivery.net/embed/389758/6546cdb6-5395-49a9-95df-e7d533a9c8e9?token=904CFA05CAC014298C2C10AFBB72D99B1A3D0B0D5B1A01CC5C321B1B90340189&expires=1823440202";
 

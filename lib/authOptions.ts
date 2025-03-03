@@ -13,7 +13,8 @@ export const authOptions: NextAuthOptions = {
     maxAge: 30 * 24 * 60 * 60
   },
   pages: {
-    signIn: "/sign-in"
+    signIn: "/sign-in",
+    error: "/sign-in"
   },
   providers: [
     GoogleProvider({
@@ -21,7 +22,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
     }),
     CredentialsProvider({
-      name: "Credentials",
+      name: "credentials",
       credentials: {
         email: { label: "Email", type: "email", placeholder: "example@mail.com" },
         password: { label: "Password", type: "password" }
@@ -74,6 +75,12 @@ export const authOptions: NextAuthOptions = {
           isPaid: user?.isPaid || false
         }
       };
+    },
+    async signIn({user, account, profile}) {
+      if (account && account.provider === "google" && profile && "email_verified" in profile && !profile.email_verified) {
+        return false;
+      }
+      return true;
     }
   }
 }

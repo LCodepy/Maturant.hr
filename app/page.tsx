@@ -7,7 +7,7 @@ export default async function Home() {
     <>
       <Navbar />
       <div
-        className="w-screen flex flex-col items-center justify-center"
+        className="w-full flex flex-col items-center justify-center"
         style={{
           backgroundImage: `
           linear-gradient(rgba(200, 200, 200, 0.2) 1px, transparent 1px),
