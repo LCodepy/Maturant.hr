@@ -2,6 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
@@ -14,8 +15,10 @@ const SignInForm = () => {
   const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false);
 
   const router = useRouter();
-
   const searchParams = useSearchParams();
+
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+
   const authError = searchParams.get("error");
   const authErrorNames: { [key: string]: string } = {
     AccessDenied: "Account access denied!",
@@ -38,7 +41,7 @@ const SignInForm = () => {
       setError("Invalid email or password!");
       setIsLoading(false);
     } else {
-      router.push("/");
+      router.push(callbackUrl);
       router.refresh();
     }
   };
@@ -47,7 +50,7 @@ const SignInForm = () => {
     try {
       setIsGoogleLoading(true);
       await signIn("google", {
-        callbackUrl: "http://localhost:3000/videos",
+        callbackUrl: callbackUrl,
       });
     } catch (error) {
       setIsGoogleLoading(false);
@@ -58,7 +61,7 @@ const SignInForm = () => {
 
   return (
     <div className="w-full mx-auto">
-      <h1 className="text-3xl font-semibold mb-8 text-left text-gray-800">
+      <h1 className="text-3xl font-semibold mb-12 text-left text-gray-800">
         Sign in to your account
       </h1>
       <form onSubmit={onSubmit} className="flex flex-col gap-1">
@@ -139,9 +142,26 @@ const SignInForm = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="bg-black text-white font-semibold p-2 mt-6 rounded-md hover:bg-gray-800 active:bg-black"
+          className="bg-black text-white font-semibold p-2 mt-6 rounded-md hover:bg-gray-800 active:bg-black disabled:bg-gray-700"
         >
-          Sign In
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center p-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-4 w-4 mr-4 animate-spin inline"
+              >
+                <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+              </svg>
+            </div>
+          ) : (
+            "Sign In"
+          )}
         </button>
 
         <div className="flex items-center my-6">
@@ -152,24 +172,17 @@ const SignInForm = () => {
 
         <button
           type="button"
-          className="bg-white text-gray-800 p-2 rounded-md border border-black hover:bg-slate-200"
+          className="bg-white text-gray-800 p-2 rounded-md border border-black hover:bg-slate-100 disabled:bg-slate-50 flex items-center justify-center text-md"
           onClick={loginWithGoogle}
           disabled={isGoogleLoading}
         >
-          {isGoogleLoading && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-4 w-4 mr-4 animate-spin inline"
-            >
-              <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-            </svg>
-          )}
+          <Image
+            src="/google.png"
+            alt="Google"
+            width={24}
+            height={24}
+            className="mr-2"
+          />
           Sign in with Google
         </button>
 

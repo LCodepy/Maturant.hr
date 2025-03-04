@@ -19,7 +19,7 @@ const Navbar = async () => {
             <Link href="/">
               <div className="cursor-pointer hover:text-rose-500">Home</div>
             </Link>
-            <Link href="/videos">
+            <Link href="/lessons">
               <div className="cursor-pointer hover:text-rose-500">Lessons</div>
             </Link>
             <Link href="/about">

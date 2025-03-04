@@ -7,7 +7,7 @@ const SignOutButton = () => {
   return (
     <button
       type="button"
-      className="bg-white border border-black px-4 py-2 text-black-500 rounded-md hover:bg-gray-100 active:bg-black"
+      className="bg-white border border-black px-4 py-2 text-black-500 rounded-md hover:bg-gray-100 active:bg-white"
       onClick={() =>
         signOut({
           redirect: true,

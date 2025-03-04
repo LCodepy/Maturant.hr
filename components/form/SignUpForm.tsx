@@ -2,7 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
 const SignUpForm = () => {
@@ -14,6 +14,16 @@ const SignUpForm = () => {
   const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
 
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+
+  const errorMessages = {
+    passwordMatch: "Passwords do not match!",
+    passwordLength: "Password must be between 4 and 30 characters long.",
+    signIn: "Failed to sign in after registration!",
+    failed: "Registration failed!",
+  };
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +31,12 @@ const SignUpForm = () => {
     setIsButtonLoading(true);
 
     if (password !== confirmedPassword) {
-      setError("Passwords do not match!");
+      setError(errorMessages.passwordMatch);
+      setIsButtonLoading(false);
+      return;
+    }
+    if (password.length < 4 || password.length > 30) {
+      setError(errorMessages.passwordLength);
       setIsButtonLoading(false);
       return;
     }
@@ -45,20 +60,20 @@ const SignUpForm = () => {
         redirect: false,
       });
       if (signInResponse?.error) {
-        setError("Failed to sign in after registration!");
+        setError(errorMessages.signIn);
         return;
       }
-      router.push("/");
+      router.push(callbackUrl);
       router.refresh();
     } else {
-      console.error("Registration failed!");
+      console.error(errorMessages.failed);
       setIsButtonLoading(false);
     }
   };
 
   return (
-    <>
-      <h1 className="text-3xl font-bold mb-10 text-left text-gray-800">
+    <div className="w-full mx-auto">
+      <h1 className="text-3xl font-bold mb-12 text-left text-gray-800">
         Create your account
       </h1>
       <form onSubmit={onSubmit} className="flex flex-col gap-1">
@@ -93,18 +108,28 @@ const SignUpForm = () => {
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
+            if (confirmedPassword !== e.target.value) {
+              setError(errorMessages.passwordMatch);
+            } else if (error === errorMessages.passwordMatch) {
+              setError(null);
+            }
           }}
           required
           className="border p-2 rounded-md mb-4 border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-200"
         />
 
-        <label htmlFor="password">Re-Enter your password</label>
+        <label htmlFor="password-re-enter">Re-Enter your password</label>
         <input
           type="password"
           id="password-re-enter"
           value={confirmedPassword}
           onChange={(e) => {
             setConfirmedPassword(e.target.value);
+            if (password !== e.target.value) {
+              setError(errorMessages.passwordMatch);
+            } else if (error === errorMessages.passwordMatch) {
+              setError(null);
+            }
           }}
           required
           className="border p-2 rounded-md mb-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-200"
@@ -115,9 +140,26 @@ const SignUpForm = () => {
         <button
           type="submit"
           disabled={isButtonLoading}
-          className="bg-black text-white font-semibold p-2 mt-6 rounded-md hover:bg-gray-800 active:bg-black"
+          className="bg-black text-white font-semibold p-2 mt-6 rounded-md hover:bg-gray-800 active:bg-black disabled:bg-gray-700"
         >
-          Sign Up
+          {isButtonLoading ? (
+            <div className="flex flex-col items-center justify-center p-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-4 w-4 mr-4 animate-spin inline"
+              >
+                <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+              </svg>
+            </div>
+          ) : (
+            "Sign Up"
+          )}
         </button>
 
         <p className="text-center text-md text-gray-600 mt-4">
@@ -130,7 +172,7 @@ const SignUpForm = () => {
           </Link>
         </p>
       </form>
-    </>
+    </div>
   );
 };
 
