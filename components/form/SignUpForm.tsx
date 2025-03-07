@@ -29,6 +29,7 @@ const SignUpForm = () => {
     e.preventDefault();
 
     setIsButtonLoading(true);
+    setError(null);
 
     if (password !== confirmedPassword) {
       setError(errorMessages.passwordMatch);
@@ -52,21 +53,13 @@ const SignUpForm = () => {
         password: password,
       }),
     });
+    const data = await response.json();
 
     if (response.ok) {
-      const signInResponse = await signIn("credentials", {
-        email: email,
-        password: password,
-        redirect: false,
-      });
-      if (signInResponse?.error) {
-        setError(errorMessages.signIn);
-        return;
-      }
-      router.push(callbackUrl);
-      router.refresh();
+      setIsButtonLoading(false);
+      router.push("/check-email");
     } else {
-      console.error(errorMessages.failed);
+      setError(data.message);
       setIsButtonLoading(false);
     }
   };
@@ -152,7 +145,7 @@ const SignUpForm = () => {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-4 w-4 mr-4 animate-spin inline"
+                className="h-4 w-4 animate-spin inline"
               >
                 <path d="M21 12a9 9 0 1 1-6.219-8.56" />
               </svg>

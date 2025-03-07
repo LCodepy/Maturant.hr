@@ -3,12 +3,17 @@ import { NextResponse } from "next/server";
 import { hash } from "bcrypt";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
+import { generateVerificationToken } from "@/lib/tokenUtils";
+import { sendVerificationEmail } from "../send/send-verification";
 
 export async function POST(req: Request) {
+  /* This function is used in sign up to create a new user in the database */
+  
   try {
     const body = await req.json();
     const {email, username, password} = body;
 
+    // Check if email already exists
     const emailExists = await db.user.findUnique({
       where: {
         email: email
@@ -16,9 +21,10 @@ export async function POST(req: Request) {
     });
 
     if (emailExists) {
-      return NextResponse.json({user: null, message: "Email already exists"}, {status: 409});
+      return NextResponse.json({user: null, message: "Korisnik s ovim email-om već postoji"}, {status: 409});
     }
 
+    // Check if username already exists
     const usernameExists = await db.user.findUnique({
       where: {
         username: username
@@ -26,9 +32,10 @@ export async function POST(req: Request) {
     });
 
     if (usernameExists) {
-      return NextResponse.json({user: null, message: "Username already exists"}, {status: 409});
+      return NextResponse.json({user: null, message: "Korisnik s ovim korisničkim imenom već postoji"}, {status: 409});
     }
     
+    // Hash the password and create a new user in database
     const hashedPassword = await hash(password, 10);
     const newUser = await db.user.create({
       data: {
@@ -38,15 +45,22 @@ export async function POST(req: Request) {
       }
     })
 
-    const {password: newUserPassword, ...rest} = newUser;
+    const {password: newUserPassword, ...rest} = newUser; // Get everything in the user object except the password
 
-    return NextResponse.json({ user: rest, message: "User created successfully" }, { status: 201 });
+    // generate a new verification token for the user
+    const verificationToken = await generateVerificationToken(email);
+
+    // Send the verification token to the users email
+    await sendVerificationEmail(email, verificationToken.token);
+
+    return NextResponse.json({ user: rest, message: "Novi korisnik je uspješno napravljen" }, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ message: "Something went wrong!" }, { status: 500 });
+    return NextResponse.json({ message: "Dogodila se pogreška" }, { status: 409 });
   }
 }
 
 export async function GET() {
+  /* Responds with the current signed in user object */
   try {
     const session = await getServerSession(authOptions);
 
@@ -55,6 +69,6 @@ export async function GET() {
     }
     throw new Error();
   } catch(error) {
-    return NextResponse.json({message: "Something went wrong!"}, {status: 500})
+    return NextResponse.json({ message: "Dogodila se pogreška" }, { status: 409 })
   }
 }

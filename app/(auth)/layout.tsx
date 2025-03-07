@@ -9,7 +9,7 @@ interface AuthLayoutProps {
 const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
   return (
     <div
-      className="h-screen justify-center flex flex-col w-screen items-center bg-slate-50"
+      className="h-screen justify-center flex flex-col w-screen items-center bg-slate-50 p-16"
       style={{
         backgroundImage: `
           linear-gradient(rgba(200, 200, 200, 0.2) 1px, transparent 1px),

@@ -20,7 +20,7 @@ const PayButton = () => {
       console.log("User upgraded successfully.");
       router.refresh();
     } else {
-      console.error("Failed to upgrade!");
+      console.log("Failed to upgrade!");
     }
   };
 

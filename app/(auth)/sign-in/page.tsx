@@ -2,7 +2,7 @@ import SignInForm from "@/components/form/SignInForm";
 import React from "react";
 import Image from "next/image";
 
-const signIn = () => {
+const SignIn = () => {
   return (
     <div className="w-full flex flex-col items-center">
       <SignInForm />
@@ -10,4 +10,4 @@ const signIn = () => {
   );
 };
 
-export default signIn;
+export default SignIn;

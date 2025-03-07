@@ -1,7 +1,7 @@
 import SignUpForm from "@/components/form/SignUpForm";
 import React from "react";
 
-const signUp = () => {
+const SignUp = () => {
   return (
     <div className="w-full flex flex-col items-center">
       <SignUpForm />
@@ -9,4 +9,4 @@ const signUp = () => {
   );
 };
 
-export default signUp;
+export default SignUp;
