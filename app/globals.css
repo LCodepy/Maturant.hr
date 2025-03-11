@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .bg_grid {
@@ -15,4 +15,47 @@ body {
     ),
     linear-gradient(90deg, rgba(200, 200, 200, 0.2) 1px, transparent 1px);
   background-size: 20px 20px;
+}
+
+.bg_white {
+  background-color: white;
+  color: black;
+  mix-blend-mode: lighten;
+}
+
+.bg_white:hover {
+  background-color: rgb(240, 240, 240);
+  color: black;
+  mix-blend-mode: lighten;
+}
+
+.bg_white:active {
+  background-color: white;
+  color: black;
+  mix-blend-mode: lighten;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Define the animation class */
+@layer utilities {
+  .animate-gradient-triangle {
+    animation: gradientShift 10s ease infinite;
+    background-size: 300% 300%;
+  }
+
+  /* Create a triangle shape */
+  .clip-triangle {
+    clip-path: polygon(0% 0%, 220% 0%, 0% 100%);
+  }
 }

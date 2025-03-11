@@ -4,25 +4,32 @@ import Navbar from "@/components/Navbar";
 
 export default async function Home() {
   return (
-    <>
+    <div>
       <Navbar />
-      <div className="bg_grid w-full flex flex-col items-center justify-center">
+      <div className="w-full flex flex-col items-center justify-center max-w-6xl px-12">
+        <div className="absolute inset-0 -z-10">
+          <div
+            className="absolute w-full h-[800px] -top-32 animate-gradient-triangle 
+                        bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 opacity-50 
+                        blur-2xl clip-triangle"
+          ></div>
+        </div>
         <div className="min-h-screen">
           {/* Hero Section */}
-          <section className="px-20 py-48 justify-center items-center flex flex-col">
-            <h1 className="text-6xl font-bold">Maturant.hr</h1>
-            <p className="text-2xl mt-3">
-              Prva web-stranica sa video pripremama za državnu maturu.
+          <section className="py-40 justify-center flex flex-col">
+            <h1 className="text-7xl font-semibold">Maturant.hr</h1>
+            <p className="text-4xl mt-4">
+              Želite li se pripremiti za maturu na najbolji način?
             </p>
             <Link href="/lessons">
-              <button className="mt-12 px-6 py-3 text-white bg-rose-500 font-bold rounded-lg hover:bg-rose-400 active:bg-rose-500">
+              <button className="mt-12 px-8 py-4 text-white text-xl bg-black font-bold rounded-lg hover:bg-gray-800 active:bg-black">
                 Započni s učenjem!
               </button>
             </Link>
           </section>
 
           {/* Why Choose Us */}
-          <section className="py-16 px-6 text-center bg-slate-200">
+          <section className="py-16 px-6 mt-32 text-center bg-slate-200">
             <h2 className="text-3xl font-bold mb-6">Zašto se ističemo?</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-6 bg-white shadow-lg rounded-lg transition-transform duration-300 hover:scale-105">
@@ -121,6 +128,6 @@ export default async function Home() {
           </section>
         </div>
       </div>
-    </>
+    </div>
   );
 }
