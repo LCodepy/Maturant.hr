@@ -6,15 +6,7 @@ export default async function Home() {
   return (
     <>
       <Navbar />
-      <div
-        className="w-full flex flex-col items-center justify-center"
-        style={{
-          backgroundImage: `
-          linear-gradient(rgba(200, 200, 200, 0.2) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(200, 200, 200, 0.2) 1px, transparent 1px)`,
-          backgroundSize: "20px 20px",
-        }}
-      >
+      <div className="bg_grid w-full flex flex-col items-center justify-center">
         <div className="min-h-screen">
           {/* Hero Section */}
           <section className="px-20 py-48 justify-center items-center flex flex-col">

@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import PayButton from "@/components/PayButton";
 import { authOptions } from "@/lib/authOptions";
 import { getServerSession, Session } from "next-auth";
-import { useSession } from "next-auth/react";
 
 const Videos = async () => {
   const session = await getServerSession(authOptions);
@@ -48,6 +47,10 @@ const Videos = async () => {
   return (
     <>
       <Navbar />
+      <div className="w-full flex flex-col items-center justify-center">
+        <h2 className="text-3xl m-8">Dobrodošli!</h2>
+        <div></div>
+      </div>
     </>
   );
 };

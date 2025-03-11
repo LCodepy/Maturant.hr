@@ -36,7 +36,7 @@ const ForgotPassword = () => {
   if (!success) {
     return (
       <div className="p-4">
-        <h2 className="text-3xl text-gray-800 mb-4">Forgot Password</h2>
+        <h2 className="text-3xl text-gray-800 mb-4">Forgot Password?</h2>
         <form className="flex flex-col justify-center" onSubmit={handleSubmit}>
           <input
             type="email"
