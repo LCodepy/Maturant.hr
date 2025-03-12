@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -15,24 +15,6 @@ body {
     ),
     linear-gradient(90deg, rgba(200, 200, 200, 0.2) 1px, transparent 1px);
   background-size: 20px 20px;
-}
-
-.bg_white {
-  background-color: white;
-  color: black;
-  mix-blend-mode: lighten;
-}
-
-.bg_white:hover {
-  background-color: rgb(240, 240, 240);
-  color: black;
-  mix-blend-mode: lighten;
-}
-
-.bg_white:active {
-  background-color: white;
-  color: black;
-  mix-blend-mode: lighten;
 }
 
 @keyframes gradientShift {
@@ -54,8 +36,13 @@ body {
     background-size: 300% 300%;
   }
 
+  .animate-gradient-text {
+    animation: gradientShift 10s ease infinite;
+    background-size: 1000% 300%;
+  }
+
   /* Create a triangle shape */
   .clip-triangle {
-    clip-path: polygon(0% 0%, 220% 0%, 0% 100%);
+    clip-path: polygon(0% 0%, 3700px 0%, 0% 100%);
   }
 }

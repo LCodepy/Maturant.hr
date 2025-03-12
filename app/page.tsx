@@ -29,31 +29,19 @@ export default async function Home() {
           </section>
 
           {/* Why Choose Us */}
-          <section className="py-16 px-6 mt-32 text-center bg-slate-200">
-            <h2 className="text-3xl font-bold mb-6">Zašto se ističemo?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 bg-white shadow-lg rounded-lg transition-transform duration-300 hover:scale-105">
-                <h3 className="text-xl font-semibold">
-                  🎓 Pouzdani Instruktori
-                </h3>
-                <p>Učite od dobitnika stipendije na maturi.</p>
-              </div>
-              <div className="p-6 bg-white shadow-lg rounded-lg transition-transform duration-300 hover:scale-105">
-                <h3 className="text-xl font-semibold">📹 HD Video Lekcije</h3>
-                <p>Kvalitetni, jasni i lako razumljive video lekcije.</p>
-              </div>
-              <div className="p-6 bg-white shadow-lg rounded-lg transition-transform duration-300 hover:scale-105">
-                <h3 className="text-xl font-semibold">
-                  ⏳ Učite Vlastitim Tempom
-                </h3>
-                <p>Premotavajte i pogledajte lekcije kad kod zaželite!</p>
-              </div>
-            </div>
+          <section className="py-16 px-2 mt-32 text-left items-start">
+            <h2 className="text-5xl font-bold mb-12">Zašto izabrati nas?</h2>
+            <h3 className="text-4xl font-semibold">
+              Najbolja cijena na tržištu
+            </h3>
+            <h3 className="text-4xl font-semibold mt-20">
+              Učite svojim tempom
+            </h3>
           </section>
 
           {/* Featured Lessons */}
-          <section className="py-16 px-6 text-center">
-            <h2 className="text-3xl font-bold mb-6">Odaberite Naše Lekcije</h2>
+          <section className="py-16 px-2 text-left items-start">
+            <h2 className="text-5xl font-bold mb-6">Što nudimo?</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-8 bg-slate-200 rounded-lg flex items-center flex-col justify-between space-y-4">
                 <Image

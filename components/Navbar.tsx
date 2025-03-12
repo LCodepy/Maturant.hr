@@ -10,7 +10,7 @@ const Navbar = async () => {
 
   return (
     <nav className="w-full z-50 top-0">
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/">
             <Image src="/logo_white.png" alt="Logo" width={200} height={200} />
@@ -48,8 +48,10 @@ const Navbar = async () => {
                   </div>
                 </Link>
                 <Link href="/sign-up">
-                  <div className="text-lg bg_white px-6 py-2 rounded-md mx-4 cursor-pointer font-semibold">
-                    Get Started
+                  <div className="bg-white px-6 py-2 rounded-md mx-4 cursor-pointer hover:bg-gray-100 active:bg-white">
+                    <span className="text-lg text-transparent animate-gradient-text font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text">
+                      Get Started
+                    </span>
                   </div>
                 </Link>
               </>
