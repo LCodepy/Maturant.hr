@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import ResetPassword from "@/components/ResetPassword";
+import ResetPassword from "@/components/auth/ResetPassword";
 
 const ResetPasswordPage = () => {
   return (

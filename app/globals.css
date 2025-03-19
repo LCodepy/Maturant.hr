@@ -8,7 +8,7 @@ body {
   font-family: "Nunito", sans-serif;
 }
 
-.bg_grid {
+.bg-grid {
   background-image: linear-gradient(
       rgba(200, 200, 200, 0.2) 1px,
       transparent 1px
@@ -44,5 +44,13 @@ body {
   /* Create a triangle shape */
   .clip-triangle {
     clip-path: polygon(0% 0%, 3700px 0%, 0% 100%);
+  }
+
+  .clip-triangle-bottom {
+    clip-path: polygon(-2000px 100%, 3500px 0%, 3500px 100%);
+  }
+
+  .clip-angle-line {
+    clip-path: polygon(0px 450px, 2500px 100px, 2500px 350px, 0px 700px);
   }
 }

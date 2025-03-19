@@ -8,11 +8,11 @@ interface AuthLayoutProps {
 
 const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
   return (
-    <div className="bg_grid min-h-screen justify-center flex flex-col w-full items-center bg-slate-50 p-16">
+    <div className="bg-grid min-h-screen justify-center flex flex-col w-full items-center bg-slate-50 p-16">
       <Link href="/">
         <Image
-          src="/logo.png"
-          width={250}
+          src="/logo_dark.png"
+          width={200}
           height={200}
           alt="Logo"
           className="mb-8"
