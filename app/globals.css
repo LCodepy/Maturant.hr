@@ -51,6 +51,10 @@ body {
   }
 
   .clip-angle-line {
-    clip-path: polygon(0px 450px, 2500px 100px, 2500px 350px, 0px 700px);
+    clip-path: polygon(0% 350px, 100% 100px, 100% 350px, 0% 600px);
   }
+  /* .clip-angle-line {
+    clip-path: polygon(0px 450px, 2500px 100px, 2500px 350px, 0px 700px);
+    top: -100px;
+  } */
 }

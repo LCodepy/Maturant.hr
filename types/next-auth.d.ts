@@ -3,14 +3,15 @@ import NextAuth from "next-auth";
 declare module "next-auth" {
   interface User {
     username: string | null;
-    isPaid: boolean;
+    paidLectures: string[];
   }
   interface Session {
     user: User & {
-      username: string
-    }
+      username: string;
+      paidLectures: string[];
+    };
     token: {
-      username: string
-    }
+      username: string;
+    };
   }
 }

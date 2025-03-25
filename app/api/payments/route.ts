@@ -10,7 +10,10 @@ export async function POST(req: Request) {
     const session = await getServerSession(authOptions); // Gets the current logged in user
 
     if (!session || !session.user) {
-      return NextResponse.json({ message: "Pristup nije dopušten" }, { status: 409 });
+      return NextResponse.json(
+        { message: "Pristup nije dopušten" },
+        { status: 409 }
+      );
     }
 
     const { upgrade } = await req.json();
@@ -20,17 +23,20 @@ export async function POST(req: Request) {
       const user = await db.user.findUnique({
         where: {
           email: session.user.email as string,
-        }
+        },
       });
 
       if (!user) {
-        return NextResponse.json({ message: "Korisnik ne postoji" }, { status: 409 });
+        return NextResponse.json(
+          { message: "Korisnik ne postoji" },
+          { status: 409 }
+        );
       }
 
-      // Updated the database - sets isPaid field to true
+      // Updated the database - sets paidLectures field to all
       await db.user.update({
         where: { email: session.user.email as string },
-        data: { isPaid: true }
+        data: { paidLectures: ["physics", "math"] },
       });
 
       return NextResponse.json({ message: "Uspjeh" }, { status: 201 });
@@ -39,6 +45,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Uspjeh" }, { status: 201 });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ message: "Dogodila se pogreška pri plaćanju" }, { status: 409 });
+    return NextResponse.json(
+      { message: "Dogodila se pogreška pri plaćanju" },
+      { status: 409 }
+    );
   }
 }

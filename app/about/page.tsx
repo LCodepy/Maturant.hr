@@ -7,7 +7,7 @@ const About = () => {
     <div className="w-full flex flex-col items-center justify-center">
       <div className="absolute inset-0 -z-10">
         <div
-          className="absolute w-full h-[860px] -top-[150px] animate-gradient-triangle 
+          className="absolute w-full h-[860px] animate-gradient-triangle 
                         bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 opacity-50 
                         blur-2xl clip-angle-line"
         ></div>
@@ -17,8 +17,8 @@ const About = () => {
         <div className="w-full flex flex-col justify-center">
           <div className="min-h-screen">
             {/* About Us Hero Section */}
-            <section className="py-48 text-left flex flex-col">
-              <h1 className="text-5xl font-bold">Pozdrav,</h1>
+            <section className="py-60 mt-2 text-left flex flex-col">
+              <h1 className="text-5xl font-semibold mt-2">Pozdrav,</h1>
               <p className="text-2xl mt-3 max-w-3xl">
                 Mi smo studenti FER-a, i napravili smo ovu stranicu kako bi
                 olakšali maturantima pripremanje za maturu.
@@ -42,6 +42,17 @@ const About = () => {
               <p className="text-xl max-w-3xl">
                 Imamo 3 prednosti nad klasičnim pripremama:
               </p>
+              <div className="flex flex-col text-center max-w-min max-h-min">
+                <div className="p-8 mt-8 rounded-full bg-blue-400 text-white text-xl">
+                  1.
+                </div>
+                <div className="p-8 mt-8 rounded-full bg-blue-400  text-white text-xl">
+                  2.
+                </div>
+                <div className="p-8 mt-8 rounded-full bg-blue-400  text-white text-xl">
+                  3.
+                </div>
+              </div>
             </section>
 
             {/* Our Team */}
@@ -49,12 +60,12 @@ const About = () => {
               <h2 className="text-4xl font-bold my-6">Naš tim</h2>
               <div className="w-fit grid grid-cols-1 md:grid-rows-2 gap-6">
                 <div className="p-6 bg-white shadow-lg rounded-lg">
-                  <h3 className="text-xl font-semibold">🎓 Ivan Novak</h3>
-                  <p>Osnivač i instruktor matematike</p>
+                  <h3 className="text-xl font-semibold">Lovro Gale</h3>
+                  <p>Osnivač i instruktor</p>
                 </div>
                 <div className="p-6 bg-white shadow-lg rounded-lg">
-                  <h3 className="text-xl font-semibold">📚 Ana Kovačić</h3>
-                  <p>Instruktorica hrvatskog jezika</p>
+                  <h3 className="text-xl font-semibold">Jakov Džijan</h3>
+                  <p>Osnivač i instruktor</p>
                 </div>
               </div>
             </section>

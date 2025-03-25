@@ -35,10 +35,13 @@ export default async function Home() {
             <section className="py-16 mt-12 text-left items-start">
               <h2 className="text-5xl font-bold mb-12">Zašto izabrati nas?</h2>
               <h3 className="text-4xl font-semibold">
-                Najbolja cijena na tržištu
+                Daleko najbolja cijena na tržištu
               </h3>
               <h3 className="text-4xl font-semibold mt-20">
                 Učite svojim tempom
+              </h3>
+              <h3 className="text-4xl font-semibold mt-20">
+                Najbolje znamo kako učiti za maturu
               </h3>
             </section>
 
