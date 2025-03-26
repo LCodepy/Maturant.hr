@@ -114,35 +114,31 @@ const Lessons = async () => {
               <div className="mt-16">
                 <div>
                   <h2 className="text-4xl">Matematika</h2>
-                  <div className="w-full py-8">
-                    <ul className="flex flex-row items-center space-x-4">
-                      {lessons
-                        .filter((value) => {
-                          return (
-                            value.includes("matematika") &&
-                            session.user.paidLectures.indexOf(value) === -1
-                          );
-                        })
-                        .map((lesson) => (
-                          <li
-                            key={lesson}
-                            className="bg-slate-100 rounded-md p-8 flex flex-col justify-between shadow-md min-h-80"
-                          >
-                            <div>
-                              <h2 className="text-3xl">
-                                {lessonNames[lesson]}
-                              </h2>
-                              <div className="text-lg mt-4">
-                                {lessonDescriptions[lesson]}
-                              </div>
+                  <ul className="flex flex-row items-center space-x-4 py-8">
+                    {lessons
+                      .filter((value) => {
+                        return (
+                          value.includes("matematika") &&
+                          session.user.paidLectures.indexOf(value) === -1
+                        );
+                      })
+                      .map((lesson) => (
+                        <li
+                          key={lesson}
+                          className="bg-slate-100 rounded-md p-8 flex flex-col justify-between shadow-md min-h-80"
+                        >
+                          <div>
+                            <h2 className="text-3xl">{lessonNames[lesson]}</h2>
+                            <div className="text-lg mt-4">
+                              {lessonDescriptions[lesson]}
                             </div>
-                            <div className="w-full flex flex-col items-center justify-center mt-8">
-                              <BuyLessonButton />
-                            </div>
-                          </li>
-                        ))}
-                    </ul>
-                  </div>
+                          </div>
+                          <div className="w-full flex flex-col items-center justify-center mt-8">
+                            <BuyLessonButton lesson={lesson} />
+                          </div>
+                        </li>
+                      ))}
+                  </ul>
                 </div>
                 <div>
                   <h2 className="text-4xl mt-12">Fizika</h2>
@@ -166,7 +162,7 @@ const Lessons = async () => {
                             </div>
                           </div>
                           <div className="w-full flex flex-col items-center justify-center mt-8">
-                            <BuyLessonButton />
+                            <BuyLessonButton lesson={lesson} />
                           </div>
                         </li>
                       ))}
@@ -205,88 +201,53 @@ const Lessons = async () => {
           <div className="my-20 mt-40">
             <div>
               <h2 className="text-4xl">Matematika</h2>
-              <div className="py-8 flex flex-row space-x-8">
-                <div className="bg-slate-100 rounded-md p-8 flex flex-col justify-between shadow-md">
-                  <div>
-                    <h2 className="text-3xl">Matematika A</h2>
-                    <div className="text-lg mt-4">
-                      <p>- 15 video lekcija teorije</p>
-                      <p>- 10 video lekcija zadataka</p>
-                      <p>- Sve to za samo 40 eura</p>
-                    </div>
-                  </div>
-                  <div className="w-full flex flex-col items-center justify-center mt-8">
-                    <BuyLessonButton />
-                  </div>
-                </div>
-                <div className="bg-slate-100 rounded-md p-8 flex flex-col justify-between shadow-md">
-                  <div>
-                    <h2 className="text-3xl">Matematika B</h2>
-                    <div className="text-lg mt-4">
-                      <p>- 15 video lekcija teorije</p>
-                      <p>- 10 video lekcija zadataka</p>
-                      <p>- Sve to za samo 40 eura</p>
-                    </div>
-                  </div>
-                  <div className="w-full flex flex-col items-center justify-center mt-8">
-                    <BuyLessonButton />
-                  </div>
-                </div>
-                <div className="bg-slate-100 rounded-md p-8 flex flex-col justify-between shadow-md">
-                  <div>
-                    <h2 className="text-3xl">Zadaci A</h2>
-                    <div className="text-lg mt-4">
-                      <p>- 10 video lekcija zadataka</p>
-                      <p>- Sve to za samo 30 eura</p>
-                    </div>
-                  </div>
-                  <div className="w-full flex flex-col items-center justify-center mt-8">
-                    <BuyLessonButton />
-                  </div>
-                </div>
-                <div className="bg-slate-100 rounded-md p-8 flex flex-col justify-between shadow-md">
-                  <div>
-                    <h2 className="text-3xl">Zadaci B</h2>
-                    <div className="text-lg mt-4">
-                      <p>- 10 video lekcija zadataka</p>
-                      <p>- Sve to za samo 30 eura</p>
-                    </div>
-                  </div>
-                  <div className="w-full flex flex-col items-center justify-center mt-8">
-                    <BuyLessonButton />
-                  </div>
-                </div>
-              </div>
+              <ul className="flex flex-row items-center space-x-4 py-8">
+                {lessons
+                  .filter((value) => {
+                    return value.includes("matematika");
+                  })
+                  .map((lesson) => (
+                    <li
+                      key={lesson}
+                      className="bg-slate-100 rounded-md p-8 flex flex-col justify-between shadow-md min-h-80"
+                    >
+                      <div>
+                        <h2 className="text-3xl">{lessonNames[lesson]}</h2>
+                        <div className="text-lg mt-4">
+                          {lessonDescriptions[lesson]}
+                        </div>
+                      </div>
+                      <div className="w-full flex flex-col items-center justify-center mt-8">
+                        <BuyLessonButton lesson={lesson} />
+                      </div>
+                    </li>
+                  ))}
+              </ul>
             </div>
             <div>
               <h2 className="text-4xl mt-12">Fizika</h2>
-              <div className="py-8 flex flex-row space-x-8">
-                <div className="bg-slate-100 rounded-md p-8 flex flex-col justify-between shadow-md">
-                  <div>
-                    <h2 className="text-3xl">Fizika</h2>
-                    <div className="text-lg mt-4">
-                      <p>- 15 video lekcija teorije</p>
-                      <p>- 10 video lekcija zadataka</p>
-                      <p>- Sve to za samo 40 eura</p>
-                    </div>
-                  </div>
-                  <div className="w-full flex flex-col items-center justify-center mt-8">
-                    <BuyLessonButton />
-                  </div>
-                </div>
-                <div className="bg-slate-100 rounded-md p-8 flex flex-col justify-between shadow-md">
-                  <div>
-                    <h2 className="text-3xl">Zadaci</h2>
-                    <div className="text-lg mt-4">
-                      <p>- 10 video lekcija zadataka</p>
-                      <p>- Sve to za samo 30 eura</p>
-                    </div>
-                  </div>
-                  <div className="w-full flex flex-col items-center justify-center mt-8">
-                    <BuyLessonButton />
-                  </div>
-                </div>
-              </div>
+              <ul className="flex flex-row items-center space-x-4 py-8">
+                {lessons
+                  .filter((value) => {
+                    return value.includes("fizika");
+                  })
+                  .map((lesson) => (
+                    <li
+                      key={lesson}
+                      className="bg-slate-100 rounded-md p-8 flex flex-col justify-between shadow-md min-h-80"
+                    >
+                      <div>
+                        <h2 className="text-3xl">{lessonNames[lesson]}</h2>
+                        <div className="text-lg mt-4">
+                          {lessonDescriptions[lesson]}
+                        </div>
+                      </div>
+                      <div className="w-full flex flex-col items-center justify-center mt-8">
+                        <BuyLessonButton lesson={lesson} />
+                      </div>
+                    </li>
+                  ))}
+              </ul>
             </div>
           </div>
         </div>
